@@ -4,7 +4,8 @@ class Test < ApplicationRecord
 
   class << self
     def all_titles_by_category_title(category_title)
-      self.select(:title).where(category_id: Category.select(:id).where(title: category_title)).order(title: :desc)
+      self.joins(:category).where(category: { title: category_title}).select(:title).order(title: :desc)
+      # self.select(:title).where(category_id: Category.select(:id).where(title: category_title)).order(title: :desc)
     end
   end
 end
