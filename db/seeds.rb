@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-#=begin
+=begin
 Category.create([{ title: "Ruby" }, { title: "Go" }, { title: "JS" }])
 User.create([{ name: "Artur", password: "123asdf" }, { name: "John", password: "456qwer" }])
 Test.create([{ title: "General Ruby", level: 1, category_id: 1 },
@@ -29,5 +29,5 @@ User.find(1).tests << Test.find(3)
 User.find(2).tests << Test.find(4)
 User.find(2).tests << Test.find(5)
 User.find(2).tests << Test.find(1)
-# =end
+=end
 
