@@ -6,28 +6,35 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Category.create([{ title: "Ruby" }, { title: "Go" }, { title: "JS" }])
-User.create([{ name: "Artur", password: "123asdf" }, { name: "John", password: "456qwer" }])
-Test.create([{ title: "General Ruby", level: 1, category_id: 1, author_id: 1 },
-               { title: "General Go", level: 1, category_id: 2, author_id: 1 },
-               { title: "General JS", level: 2, category_id: 3, author_id: 1 },
-               { title: "Practical Go", level: 2, category_id: 2, author_id: 2 } ,
-               { title: "Practical JS", level: 3, category_id: 3, author_id: 2 }])
-Question.create([{ body: "What type of programming language does Go belong to?", test_id: 2 },
-                   { body: "What type of programming language does Ruby belong to?", test_id: 1 },
-                   { body: "What type of programming language does JS belong to?", test_id: 3 },
-                   { body: "List the Go language data types", test_id: 4 },
-                   { body: "List the Ruby language data types", test_id: 5 }])
-Answer.create([{ body: "I don't know Go", correct: false, question_id: 1 },
-                 { body: "I don't know Ruby", correct: false, question_id: 2 },
-                 { body: "I don't know JS", correct: false, question_id: 3 },
-                 { body: "I don't know Go data types", correct: false, question_id: 4 },
-                 { body: "I don't know Ruby data types", correct: false, question_id: 5 }])
-User.find(1).tests << Test.find(1)
-User.find(1).tests << Test.find(2)
-User.find(1).tests << Test.find(3)
-User.find(2).tests << Test.find(4)
-User.find(2).tests << Test.find(5)
-User.find(2).tests << Test.find(1)
+ruby_category = Category.create(title: 'Ruby')
+go_category = Category.create(title: 'Go')
+js_category = Category.create(title: 'JS')
+
+artur_user = User.create(name: "Artur", password: "123asdf")
+john_user = User.create(name: "John", password: "456qwer")
+
+gen_ruby_test = Test.create(title: "General Ruby", level: 1, category_id: ruby_category.id, author_id: artur_user.id)
+gen_go_test = Test.create(title: "General Go", level: 1, category_id: go_category.id, author_id: artur_user.id)
+gen_js_test = Test.create(title: "General JS", level: 2, category_id: js_category.id, author_id: artur_user.id)
+practic_go_test = Test.create(title: "General Go", level: 2, category_id: go_category.id, author_id: john_user.id)
+practic_js_test = Test.create(title: "General Go", level: 3, category_id: js_category.id, author_id: john_user.id)
+
+question_1 = Question.create(body: "What type of programming language does Go belong to?", test_id: gen_go_test.id)
+question_2 = Question.create(body: "What type of programming language does Ruby belong to?", test_id: gen_ruby_test.id)
+question_3 = Question.create(body: "What type of programming language does JS belong to?", test_id: gen_js_test.id)
+question_4 = Question.create(body: "List the Go language data types", test_id: practic_go_test.id)
+question_5 = Question.create(body: "I don't know JS data types", test_id: practic_js_test.id)
+
+answer_1 = Answer.create(body: "I don't know Go", correct: false, question_id: question_1.id)
+answer_2 = Answer.create(body: "I don't know Ruby", correct: false, question_id: question_2.id)
+answer_3 = Answer.create(body: "I don't know JS", correct: false, question_id: question_3.id)
+answer_4 = Answer.create(body: "I don't know Go data types", correct: false, question_id: question_4.id)
+answer_5 = Answer.create(body: "I don't know JS data types", correct: false, question_id: question_5.id)
+
+UsersTest.create([{ user_id: artur_user.id, test_id: gen_ruby_test.id },
+                 { user_id: artur_user.id, test_id: gen_go_test.id },
+                 { user_id: artur_user.id, test_id: gen_js_test.id },
+                 { user_id: john_user.id, test_id: practic_go_test.id },
+                 { user_id: john_user.id, test_id: practic_js_test.id }])
 
 
