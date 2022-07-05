@@ -37,4 +37,3 @@ UsersTest.create([{ user_id: artur_user.id, test_id: gen_ruby_test.id },
                  { user_id: john_user.id, test_id: practic_go_test.id },
                  { user_id: john_user.id, test_id: practic_js_test.id }])
 
-
