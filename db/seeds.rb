@@ -5,14 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-=begin
+
 Category.create([{ title: "Ruby" }, { title: "Go" }, { title: "JS" }])
 User.create([{ name: "Artur", password: "123asdf" }, { name: "John", password: "456qwer" }])
-Test.create([{ title: "General Ruby", level: 1, category_id: 1 },
-               { title: "General Go", level: 1, category_id: 2 },
-               { title: "General JS", level: 2, category_id: 3 },
-               { title: "Practical Go", level: 2, category_id: 2 } ,
-               { title: "Practical JS", level: 3, category_id: 3 }])
+Test.create([{ title: "General Ruby", level: 1, category_id: 1, author_id: 1 },
+               { title: "General Go", level: 1, category_id: 2, author_id: 1 },
+               { title: "General JS", level: 2, category_id: 3, author_id: 1 },
+               { title: "Practical Go", level: 2, category_id: 2, author_id: 2 } ,
+               { title: "Practical JS", level: 3, category_id: 3, author_id: 2 }])
 Question.create([{ body: "What type of programming language does Go belong to?", test_id: 2 },
                    { body: "What type of programming language does Ruby belong to?", test_id: 1 },
                    { body: "What type of programming language does JS belong to?", test_id: 3 },
@@ -29,5 +29,5 @@ User.find(1).tests << Test.find(3)
 User.find(2).tests << Test.find(4)
 User.find(2).tests << Test.find(5)
 User.find(2).tests << Test.find(1)
-=end
+
 
