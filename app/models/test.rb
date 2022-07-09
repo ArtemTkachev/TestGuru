@@ -4,11 +4,8 @@ class Test < ApplicationRecord
   has_many :questions
   has_many :users_tests
   has_many :users, through: :users_tests
-
-  class << self
-    def all_titles_by_category_title(category_title)
-      self.joins(:category).where(category: { title: category_title}).select(:title).order(title: :desc)
-      # self.select(:title).where(category_id: Category.select(:id).where(title: category_title)).order(title: :desc)
-    end
-  end
+  scope :all_titles_by_category_title,
+        ->(category_title) { joins(:category).where(category: { title: category_title}).select(:title).order(title: :desc) }
+  validates :title, presence: true
+  validates :level, numericality: { only_integer: true, greater_than: 0}
 end
