@@ -6,12 +6,13 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+
 ruby_category = Category.create(title: 'Ruby')
 go_category = Category.create(title: 'Go')
 js_category = Category.create(title: 'JS')
 
-artur_user = User.create(name: "Artur", password: "123asdf")
-john_user = User.create(name: "John", password: "456qwer")
+artur_user = User.create(name: "Artur", password: "123asdf", email: "fhg@gjhf.com")
+john_user = User.create(name: "John", password: "456qwer", email: "khk@kfl.com")
 
 gen_ruby_test = Test.create(title: "General Ruby", level: 1, category_id: ruby_category.id, author_id: artur_user.id)
 gen_go_test = Test.create(title: "General Go", level: 1, category_id: go_category.id, author_id: artur_user.id)
