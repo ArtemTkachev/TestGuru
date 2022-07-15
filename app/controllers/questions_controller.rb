@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    render plain: "QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
+    # render plain: "QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
+    render :show
   end
 
   def destroy
@@ -22,7 +23,8 @@ class QuestionsController < ApplicationController
   def create
     @question = @test.questions.new(question_params)
     if @question.save
-      render plain: "CREATED QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
+      # render plain: "CREATED QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
+      render :show, layout: false
     else
       render plain: "Sorry. Invalid question.\nPARAMETERS: \n#{params.inspect}"
     end
