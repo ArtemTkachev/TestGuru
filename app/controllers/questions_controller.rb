@@ -17,12 +17,15 @@ class QuestionsController < ApplicationController
     render plain: "The question has been deleted.\nPARAMETERS: \n#{params.inspect}"
   end
 
-  def new
-  end
+  def new; end
 
   def create
-    @question = @test.questions.create(question_params)
-    render plain: "CREATED QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
+    @question = @test.questions.new(question_params)
+    if @question.save
+      render plain: "CREATED QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
+    else
+      render plain: "Sorry. Invalid question.\nPARAMETERS: \n#{params.inspect}"
+    end
   end
 
   private
