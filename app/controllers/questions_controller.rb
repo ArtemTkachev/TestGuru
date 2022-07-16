@@ -24,7 +24,10 @@ class QuestionsController < ApplicationController
     @question = @test.questions.new(question_params)
     if @question.save
       # render plain: "CREATED QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
-      render :show, layout: false
+      # render :show, layout: false
+      respond_to do |format|
+        format.html { redirect_to question_path(@question.id) }
+      end
     else
       render plain: "Sorry. Invalid question.\nPARAMETERS: \n#{params.inspect}"
     end
