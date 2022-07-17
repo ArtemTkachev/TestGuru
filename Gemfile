@@ -8,6 +8,8 @@ gem 'rails', '~> 6.1', '>= 6.1.6'
 
 gem 'byebug'
 
+gem 'slim', '~> 4.1'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
