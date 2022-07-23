@@ -1,7 +1,5 @@
 module QuestionsHelper
-  QUESTION_ACTIONS = { new: 'Create new', edit: 'Edit' }.freeze
-
-  def question_header(question, action)
-    "#{QUESTION_ACTIONS[action]} #{question.test.title} Question"
+  def question_header(question)
+    "#{question.persisted? ? 'Edit' : 'Create new'} #{question.test.title} Question"
   end
 end
