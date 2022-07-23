@@ -1,35 +1,45 @@
 class QuestionsController < ApplicationController
-  before_action :find_test, only: %i[index create]
-  before_action :find_question, only: %i[show destroy]
+  before_action :find_test
+  before_action :find_question, only: %i[show destroy edit update]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
     @questions = @test.questions
-    render plain: "QUESTIONS: \n#{@questions.inspect}\nPARAMETERS: \n#{params.inspect}"
+    redirect_to test_path(@test)
+    test = Test.first
   end
 
-  def show
-    # render plain: "QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
-    render :show
-  end
+  def show; end
 
   def destroy
     @question.destroy
-    render plain: "The question has been deleted.\nPARAMETERS: \n#{params.inspect}"
+    redirect_to test_questions_path(@test)
   end
 
-  def new; end
+  def new
+    @question = @test.questions.new
+  end
 
   def create
     @question = @test.questions.new(question_params)
     if @question.save
-      # render plain: "CREATED QUESTION: \n#{@question.inspect}\nPARAMETERS: \n#{params.inspect}"
-      # render :show, layout: false
       respond_to do |format|
-        format.html { redirect_to question_path(@question.id) }
+        format.html { redirect_to test_question_path(@test, @question) }
       end
     else
-      render plain: "Sorry. Invalid question.\nPARAMETERS: \n#{params.inspect}"
+      render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @question.update(question_params)
+      respond_to do |format|
+        format.html { redirect_to test_question_path(@test, @question) }
+      end
+    else
+      render :edit
     end
   end
 

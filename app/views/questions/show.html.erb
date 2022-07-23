@@ -3,3 +3,10 @@
   <strong>Body:</strong>
   <%= @question.body %>
 </p>
+<p>
+  <strong>Test title:</strong>
+  <%= @test.title %>
+</p>
+
+<%= link_to 'Edit', edit_test_question_path(@test, @question) %>
+<%= link_to 'Back', test_path(@test) %>
